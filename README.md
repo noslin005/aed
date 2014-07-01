@@ -5,23 +5,18 @@ Algoritimos de ordenção e pesquisa em vectores. Foi compilado usando o gcc 4.2
 
 Windows:
 
-    void pause(void){
-        printf("\n\tTecle Enter para continuar ...");
-        //esta linha
-        fpurge(stdin);
-        //por esta linha
-        fflush(stdin);
-        getchar();
-    }
+    //substituir esta linha
+    fpurge(stdin);
+    //por esta linha
+    fflush(stdin);
     
 Linux:
 
+    //incluir esta linha no cabeçalho
     #include <stdio_ext>
-    void pause(){
-        printf("\n\tTecle Enter para continuar ...");
-        //esta linha
-        fpurge(stdin);
-        //por esta linha
-        __fpurge(stdin);
-        getchar();
-    }
+    //substitui esta linha
+    fpurge(stdin);
+    //por esta linha
+    __fpurge(stdin);
+
+Estas funções (<fpurge(stdin); fflush(stdin) e __fpurge(stdin)>) servem para limpeza de buffer em OS X, Window e Linux, respectivamente.
