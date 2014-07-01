@@ -1,4 +1,4 @@
-aed - Algoritimia e Estrutura de Dados
+aed - Algorítimia e Estrutura de Dados
 ==
 
     Algoritimos de ordenção e pesquisa em vectores  
