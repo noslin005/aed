@@ -19,7 +19,6 @@ typedef struct p_node
 /* ============================================================
     Prototipo das funcoes/metodos asociados à pilha
    ============================================================ */
-void iniciar_pilha(pilha *cabeca);
 
 pilha *novo_no();
 
