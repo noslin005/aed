@@ -19,4 +19,4 @@ Linux:
     //por esta linha
     __fpurge(stdin);
 
-Estas funções (<fpurge(stdin); fflush(stdin) e __fpurge(stdin)>) servem para limpeza de buffer em OS X, Window e Linux, respectivamente.
+Estas funções (`fpurge(stdin)`; `fflush(stdin)` e `__fpurge(stdin)`) servem para limpeza de buffer em OS X, Window e Linux, respectivamente.
