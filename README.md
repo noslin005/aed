@@ -1,10 +1,10 @@
 aed - Algorítimia e Estrutura de Dados
 ==
 
-"Listas encadeadas
-"Pilhas
-"Filas
-"Algoritimos de pesquisa e ordencao de vectores
+###1. Listas encadeadas
+###2. Pilhas
+###3. Filas
+###4. Algoritimos de pesquisa e ordencao de vectores
 
 Foi compilado usando o gcc 4.2.1 em OS X Mavericks (i686-apple-darwin11-llvm-gcc-4.2 (GCC) 4.2.1). Quem for utilizar em Windows ou Linux deve substituir:
 
