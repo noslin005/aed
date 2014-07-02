@@ -36,8 +36,6 @@ void ll_insert_end(int data);
 // insere novo "nó" numa determinada posicao (pos)
 void ll_insert_pos(int pos, int data);
 
-// Insere os 'no' de forma ordenado (por ordem crescente do valor/data)
-void ll_insert_ord(int data);
 
 // exclui um "nó" na cabeca, inicio da lista
 void ll_delete_beg(void);

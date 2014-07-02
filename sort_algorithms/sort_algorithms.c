@@ -73,7 +73,11 @@ void merge_sort(l_int *vetor, int size)
 
 
 
-/* Pesquisa um valor(chave) no vector usando linear/sequencial */
+/* Pesquisa um valor(chave) no vector usando linear/sequencial 
+   Pior caso: N vezes
+   Melhor Caso: 1
+   Caso Medio: N/2
+   */
 int linear_search(l_int *vetor, int size, l_int key)
 {
     int pos = 0;
@@ -90,7 +94,11 @@ int linear_search(l_int *vetor, int size, l_int key)
 
 
 
-/* Algoritmo de pesquisa binaria */
+/* Algoritmo de pesquisa binaria 
+    Pior Caso: log2(N)
+    Caso medio: log2(N)
+    Melhor caso: 1 (valor é mediana do vector) 
+    */
 int binary_search(l_int *vetor, int size, l_int key)
 {
     int left = 0;

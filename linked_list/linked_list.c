@@ -227,35 +227,6 @@ struct ll_node *ll_swap(struct ll_node *no_a, struct ll_node *no_b )
     return no_b; // retorna no_b, que esta primeiro
 }
 
-// Insere os 'no' de forma ordenado (por ordem crescente do valor/data)
-void ll_insert_ord(int data)
-{
-
-    struct ll_node *new = ll_new_node(data);
-    if (head == NULL)
-    {
-        new->next = head;
-        head = new;
-    }
-    else
-    {
-        struct ll_node *aux = head;
-        while (aux->next != NULL && (aux->data) < (new->data))
-        {
-            aux = aux->next;
-        }
-        if (head->next == NULL)
-        {
-            new->next = head;
-            head = new;
-        }
-        else
-        {
-            new->next = aux->next;
-            aux->next = new;
-        }
-    }
-}
 
 // algoritmo buble sort para listas
 void ll_buble_sort (void)
@@ -295,7 +266,6 @@ void ll_buble_sort (void)
 
         }
     }
-    //atual = top->next;
     free(top);
 
 }
@@ -324,7 +294,7 @@ int main(void)
         printf("\n\t0. Sair");
         printf("\n\t1. Inserir Inicio.\n\t2. Inserir Fim\n\t3. Inserir Meio");
         printf("\n\t4. Remover Inicio.\n\t5. Remover Fim\n\t6. Remover Meio");
-        printf("\n\t7. Inserir (ordenado) \n\t8. Ordenar: Buble Sort");
+        printf("\n\t7. Ordenar: Buble Sort");
         printf("\n");
         ll_show();
         printf("\n\n\tDigite sua opção: ");
@@ -340,14 +310,14 @@ int main(void)
             ll_insert_beg(data);
             pause();
             break;
-        case 2:// inserir no final
+        case 2: // inserir no final
             printf("\tDigite um numero: ");
             (void)scanf("%d", &data);
             ll_insert_end(data);
             pause();
             break;
 
-        case 3:// inserir no meio
+        case 3: // inserir no meio
             printf("\tDigite um numero: ");
             (void)scanf("%d", &data);
             printf("\tEm que posicao deseja inseri-lo? ");
@@ -356,28 +326,22 @@ int main(void)
             pause();
             break;
 
-        case 4:// remover no inicio
+        case 4: // remover no inicio
             ll_delete_beg();
             pause();
             break;
 
-        case 5:// remover no final
+        case 5: // remover no final
             ll_delete_end();
             pause();
             break;
 
-        case 6:// remover no meio
+        case 6: // remover no meio
             printf("\tEm que posicao deseja eliminar? ");
             (void)scanf("%d", &pos);
             ll_delete_pos(pos);
             break;
-        case 7:
-            printf("\tDigite um numero: ");
-            (void)scanf("%d", &data);
-            ll_insert_ord(data);
-            pause();
-            break;
-        case 8:// ordenar buble sort
+        case 7: // ordenar buble sort
             ll_buble_sort();
             printf("\n\tLista ordenada com sucesso");
             pause();
