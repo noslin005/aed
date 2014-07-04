@@ -11,9 +11,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void printf_logo(){
+void printf_logo()
+{
     puts("\t\t===================================");
-    puts("\t\tSISTEMA CONTROLE PESSOAL - v1.00");
+    puts("\t\tSISTEMA CONTROLE PESSOAL - v2.00");
     puts("\t\tCreated By: Nilson Lopes, 2014 \n\t\t\t  <noslin005@gmail.com>");
     puts("\t\t===================================");
 }
@@ -36,7 +37,8 @@ int menu_principal(void)
     return opcao;
 }
 
-int submenu(char titulo[]){
+int submenu(char titulo[])
+{
     int opcao_func;
     char s[80];
     system(clear_screen);
@@ -48,6 +50,7 @@ int submenu(char titulo[]){
     printf("\t\t[3] => Verificar %s.\n", titulo);
     printf("\t\t[4] => Mostrar Dados %s.\n", titulo);
     printf("\t\t[5] => Menu Principal.\n");
+    printf("\t\t[0] => Sair.\n");
     printf("\t\tEscolha uma opcao: ");
     scanf("%s", s);
     flush_buffer();

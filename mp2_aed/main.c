@@ -8,30 +8,33 @@
  * @discipline:     Algoritmia e Estrutura de Dados [AED]
  * @author:         Nilson Lopes <noslin005@gmail.com>
  */
-#include "students.h"
+#include "funcionarios.h"
+#include "alunos.h"
 #include "menu.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-
 int main(void)
 {
+    emp_init();
     std_init();
+
     while (1)
     {
         int menu = menu_principal();
         switch (menu)
         {
-            case 1: // Menu Funcionarios
-                break;
-            case 2: // Menu Docentes
+        case 1: // Menu Funcionarios
+            emp_submenu();
+            break;
+        case 2: // Menu Docentes
 
-                break;
-            case 3: // Menu Alunos
-                std_submenu();
-                break;
-            case 0: // Sair do programa
-                exit(EXIT_SUCCESS);
+            break;
+        case 3: // Menu Alunos
+            std_submenu();
+            break;
+        case 0: // Sair do programa
+            exit(EXIT_SUCCESS);
         }
     }
     return 0;
