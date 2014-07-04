@@ -42,7 +42,7 @@ struct std_node *std_is_registered(int std_num)
 struct std_node *std_new_node(void)
 {
     struct std_node *tmp = (struct std_node *)malloc(sizeof(struct std_node));
-
+    int opt_estado;
     if (tmp == NULL)
     {
         printf("Falta de memória");
@@ -81,9 +81,28 @@ struct std_node *std_new_node(void)
     flush_buffer();
     (void)scanf("%d", &tmp->ano_curso);
 
-    printf("\t\tEstado: ");
-    flush_buffer();
-    (void)scanf("%d", &tmp->estado);
+
+    do
+    {
+        printf("\t\tEstado\n\t\t\t1-Regular\n\t\t\t2-Irregular: ");
+        fpurge(stdin);
+        (void)scanf("%d", &opt_estado);
+        if (opt_estado == 1)
+        {
+            strcpy(tmp->estado, "regular");
+            break;
+        }
+        else if (opt_estado == 2)
+        {
+            strcpy(tmp->estado, "irrregular");
+            break;
+        }
+        else
+        {
+            printf("\nOpcao invalida");
+        }
+    }
+    while (opt_estado != 1 || opt_estado != 2);
 
     printf("\t\tNumero de disciplinas [Máximo %d]: ", NUM_DISCIPLINA);
     flush_buffer();
@@ -150,7 +169,7 @@ void std_insert(void)
     }
 }
 
-// Funcao para procurar um funcionario por NIF ou por Nome
+// Funcao para procurar um struct std_node por numero ou por Nome
 struct std_node *std_search_by(char *std_nome, char *std_curso)
 {
     // Lista vazia
@@ -166,7 +185,7 @@ struct std_node *std_search_by(char *std_nome, char *std_curso)
         {
             if (strcasecmp(current->nome, std_nome) == 0)
             {
-                return current; // retorna um pronteiro para o primero funcionario encontrado
+                return current; // retorna um pronteiro para o primero struct std_node encontrado
             }
             current = current->next;
         }
@@ -179,12 +198,12 @@ struct std_node *std_search_by(char *std_nome, char *std_curso)
             {
 
                 int i = 0;
-                printf("\nNº: %d", current->numero);
-                printf("\nNome: %s", current->nome);
-                printf("\nCurso: %s ", current->curso);
-                printf("\nAno Curso: %d", current->ano_curso);
-                printf("\nSituaçao: %d", current->estado);
-                printf("\nDisciplinas: ");
+                printf("\n\tNº: %d", current->numero);
+                printf("\n\tNome: %s", current->nome);
+                printf("\n\tCurso: %s ", current->curso);
+                printf("\n\tAno Curso: %d", current->ano_curso);
+                printf("\n\tSituaçao: %s", current->estado);
+                printf("\n\tDisciplinas: ");
                 while (i < current->numDisciplinas)
                 {
                     printf("%s ", current->disciplinas[i].descricao);
@@ -199,6 +218,40 @@ struct std_node *std_search_by(char *std_nome, char *std_curso)
     return NULL; // se nao encontra nenhum aluno, retorna NULL;
 }
 
+
+// Funcao para procurar um struct std_node por numero ou por Nome
+void std_irregular (void)
+{
+    // Lista vazia
+    if (std_head == NULL)
+    {
+        return;
+    }
+    struct std_node *current = std_head;
+    // pesquisa por NOMe
+
+    while (current != NULL)
+    {
+        if (strcasecmp(current->nome, "irrregular") == 0)
+        {
+            int i = 0;
+            printf("\n\tNº: %d", current->numero);
+            printf("\n\tNome: %s", current->nome);
+            printf("\n\tCurso: %s ", current->curso);
+            printf("\n\tAno Curso: %d", current->ano_curso);
+            printf("\n\tSituaçao: %s", current->estado);
+            printf("\n\tDisciplinas: ");
+            while (i < current->numDisciplinas)
+            {
+                printf("%s ", current->disciplinas[i].descricao);
+                i++;
+            }
+            printf("\n");
+        }
+        current = current->next;
+    }
+}
+
 void std_show(void)
 {
     int i;
@@ -211,12 +264,12 @@ void std_show(void)
     while (current_node != NULL)
     {
         i = 0;
-        printf("\nNº: %d", current_node->numero);
-        printf("\nNome: %s", current_node->nome);
-        printf("\nCurso: %s ", current_node->curso);
-        printf("\nAno Curso: %d", current_node->ano_curso);
-        printf("\nSituaçao: %d", current_node->estado);
-        printf("\nDisciplinas: ");
+        printf("\n\tNº: %d", current_node->numero);
+        printf("\n\tNome: %s", current_node->nome);
+        printf("\n\tCurso: %s ", current_node->curso);
+        printf("\n\tAno Curso: %d", current_node->ano_curso);
+        printf("\n\tSituaçao: %s", current_node->estado);
+        printf("\n\tDisciplinas: ");
         while (i < current_node->numDisciplinas)
         {
             printf("%s ", current_node->disciplinas[i].descricao);
@@ -227,11 +280,57 @@ void std_show(void)
     }
 }
 
+
+void std_delete(int std_numero)
+{
+    if (std_head == NULL)
+    {
+        printf("\n\t\tLista de alunos está vazia.") ;
+        return;
+    }
+
+    struct std_node *tmpDelete = NULL; //ponteiro para o no a ser removido
+    if (std_head->next == NULL && std_head->numero == std_numero) // se for o unico elemento da lista
+    {
+        free(std_head);
+        std_head = NULL;
+        printf("\n\t\tAluno excluido com sucesso.");
+    }
+    else if (std_head->next != NULL && std_head->numero == std_numero) // se estiver no inicio da lista
+    {
+        tmpDelete = std_head;
+        std_head = std_head->next;
+        free(tmpDelete);
+        printf("\n\t\tAluno excluido com sucesso.");
+    }
+    else
+    {
+        struct std_node *current = std_head;
+        while (current->next != NULL && current->next->numero != std_numero)
+        {
+            current = current->next;
+        }
+
+        if (current->next == NULL)
+        {
+            printf("\n\t\tAluno nao encontrado.");
+        }
+        else
+        {
+            tmpDelete = current->next;
+            current->next = tmpDelete->next;
+            free(tmpDelete);
+            printf("\n\t\tAluno excluido com sucesso.");
+        }
+
+    }
+}
+
 void std_submenu(void)
 {
     int executar = 1;
     int submenu_activo;
-
+    int std_numero;
     while (executar)
     {
         submenu_activo = submenu("Alunos");
@@ -243,6 +342,9 @@ void std_submenu(void)
             std_insert();
             break;
         case 2: // eliminar aluno
+            printf("\n\t\tNº do aluno: ");
+            (void)scanf("%d", &std_numero);
+            std_delete(std_numero);
             break;
         case 3: // verificar aluno
         {
@@ -303,7 +405,7 @@ int std_check(void)
             printf("\nNome: %s", temp->nome);
             printf("\nCurso: %s ", temp->curso);
             printf("\nAno Curso: %d", temp->ano_curso);
-            printf("\nSituaçao: %d", temp->estado);
+            printf("\nSituaçao: %s", temp->estado);
             printf("\nDisciplinas: ");
             while (i < temp->numDisciplinas)
             {
@@ -332,6 +434,7 @@ int std_check(void)
     }
     case 3:
         puts("\t\tALUNOS IRREGULARES: ");
+        std_irregular();
         pause();
         break;
     case 4:

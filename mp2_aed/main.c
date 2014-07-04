@@ -10,6 +10,7 @@
  */
 #include "funcionarios.h"
 #include "alunos.h"
+#include "docentes.h"
 #include "menu.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,6 +19,7 @@ int main(void)
 {
     emp_init();
     std_init();
+    doc_init();
 
     while (1)
     {
@@ -28,7 +30,7 @@ int main(void)
             emp_submenu();
             break;
         case 2: // Menu Docentes
-
+            doc_submenu();
             break;
         case 3: // Menu Alunos
             std_submenu();
