@@ -311,10 +311,12 @@ int std_check(void)
                 i++;
             }
             printf("\n");
+            pause();
         }
         else
         {
             printf("\n\tEste aluno nao esta na lista.");
+            pause();
         }
         break;
     }
@@ -325,16 +327,20 @@ int std_check(void)
         printf("\t\tCurso a procurar: ");
         scanf("%s", tmpCurso);
         temp = std_search_by(NULL, tmpCurso);
+        pause();
         break;
     }
     case 3:
         puts("\t\tALUNOS IRREGULARES: ");
+        pause();
         break;
     case 4:
         break;
     default:
         puts("\t\tOpção inválida.");
+        pause();
         break;
     }
+
     return option;
 }
