@@ -34,14 +34,17 @@ struct q_node *novo_no()
         exit(1);
     }
     printf("\tDesignação do produto: ");
-    fpurge(stdin);
+    fflush(stdin);
+    //fpurge(stdin);
     (void)scanf("%s", novo->designacao);
 
     printf("\tQuantidade: ");
+    fflush(stdin);
     (void)scanf("%d", &novo->quantidade);
 
     printf("\tData de Expiração [dd mm aaaa]: ");
-    fpurge(stdin);
+    fflush(stdin);
+    //fpurge(stdin);
     (void)scanf("%d %d %d", &novo->data_expiracao.dia, &novo->data_expiracao.mes, &novo->data_expiracao.ano);
 
     novo->next = NULL;
@@ -192,6 +195,7 @@ int main(void)
         printf("\n\t3. Produto com menor prazo.");
         printf("\n\t4. Remover produto em maior quantidade.");
         printf("\n\tSua opção: ");
+        fflush(stdin);
         (void)scanf("%d", &opcao);
         switch (opcao)
         {
