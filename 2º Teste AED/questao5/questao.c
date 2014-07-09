@@ -21,8 +21,8 @@ struct q_node
 };
 
 // ponteiros para inicio e fim da fila
-struct q_node *primeiro;
-struct q_node *ultimo;
+struct q_node *primeiro = NULL;
+struct q_node *ultimo = NULL;
 
 // funcao para criar/alocar espaco na memoria para um novo produto
 struct q_node *novo_no()
