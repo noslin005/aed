@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct stack_node* head =  NULL;
+struct stack_node *head =  NULL;
 
 // inicia a pilha
 void stack_init(void)
@@ -25,10 +25,11 @@ int stack_isempty(void)
 
 // aloca memoria para un novo novo no a ser inserido na pilha
 // a insercao é feita no inicio
-struct stack_node* new_node(int data, struct stack_node *next)
+struct stack_node *new_node(int data, struct stack_node *next)
 {
-    struct stack_node* aux = (struct stack_node *)malloc(sizeof(struct stack_node));
-    if (aux == NULL) {
+    struct stack_node *aux = (struct stack_node *)malloc(sizeof(struct stack_node));
+    if (aux == NULL)
+    {
         printf("\n\tErro. Falta de memória.\n");
         exit(1);
     }
@@ -47,7 +48,7 @@ void stack_push(int data)
 void stack_pop(void)
 {
     int item;
-    if (head==NULL)
+    if (head == NULL)
     {
         printf("\n\tPilha vazia, sem elementos.\n");
         return;
@@ -62,7 +63,7 @@ void stack_pop(void)
 // mostra o conteudo da pilha
 void stack_show(void)
 {
-    struct stack_node * aux = head;
+    struct stack_node *aux = head;
     while (aux != NULL)
     {
         printf("\t %d\n", aux->data);
@@ -71,18 +72,20 @@ void stack_show(void)
 }
 
 // limpa o buffer e espera digitar enter pa continuar o programa
-void pause(void){
+void pause(void)
+{
     printf("\n\tTecle Enter para continuar ...");
     fpurge(stdin);
     getchar();
-    
+
 }
 // funcao principal
 int main(void)
 {
     int data, opcao;
     stack_init();
-    while(1){
+    while (1)
+    {
         (void)system("clear");
         printf("\n\t** Pilhas com Listas Encadeadas **");
         printf("\n\t**********************************");
@@ -92,46 +95,50 @@ int main(void)
         printf("\n\n\tDigite a sua opção: ");
         fpurge(stdin);
         scanf("%d", &opcao);
-        
-        switch (opcao) {
-            case 1:
+
+        switch (opcao)
+        {
+        case 1:
+        {
+            printf("\n\tValor a ser colocado: ");
+            fpurge(stdin);
+            (void)scanf("%d", &data);
+            stack_push(data);
+            break;
+        }
+        case 2:
+        {
+            stack_pop();
+            pause();
+            break;
+        }
+        case 3:
+        {
+            data = stack_isempty();
+            if (data == 0)
             {
-                printf("\n\tValor a ser colocado: ");
-                fpurge(stdin);
-                (void)scanf("%d", &data);
-                stack_push(data);
-                break;
+                printf("\n\tPilha nao está vazia.\n");
             }
-            case 2:
+            else
             {
-                stack_pop();
-                pause();
-                break;
+                printf("\n\tPilha vazia.\n");
             }
-            case 3:
-            {
-                data = stack_isempty();
-                if (data == 0) {
-                    printf("\n\tPilha nao está vazia.\n");
-                }else{
-                    printf("\n\tPilha vazia.\n");
-                }
-                pause();
-                break;
-            }
-            case 4:
-            {
-                printf("\n\tConteúdo da pilha:\n");
-                stack_show();
-                pause();
-                break;
-            }
-            case 0:
-                exit(0);
-            default:
-                printf("\tOpcao errada.");
-                pause();
-                break;
+            pause();
+            break;
+        }
+        case 4:
+        {
+            printf("\n\tConteúdo da pilha:\n");
+            stack_show();
+            pause();
+            break;
+        }
+        case 0:
+            exit(0);
+        default:
+            printf("\tOpcao errada.");
+            pause();
+            break;
         }
     }
     return 0;

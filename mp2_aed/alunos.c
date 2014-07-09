@@ -385,7 +385,7 @@ int std_check(void)
     puts("\t\t[2] -> Por Curso/Turma.");
     puts("\t\t[3] -> Em Estado Irregular.");
     puts("\t\t[4] -> Menu anterior.");
-    puts("\t\t[0] - Sair.");
+    puts("\t\t[0] -> Sair.");
     printf("\t\tEscolhe uma opcao: ");
     fgets(s, sizeof(s), stdin);
     option = atoi(s);
